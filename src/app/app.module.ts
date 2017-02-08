@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import {HttpModule, Http} from '@angular/http';
 import {AlertModule, PopoverModule} from 'ng2-bootstrap';
 import { ModalModule } from 'ng2-bootstrap';
 import { PaginationModule } from 'ng2-bootstrap/pagination';
@@ -13,20 +13,29 @@ import { DesignComponent } from './design/design.component';
 import { PageNotFoundComponentComponent } from './page-not-found-component/page-not-found-component.component';
 import { ButtonsModule } from 'ng2-bootstrap/buttons';
 import { CarouselModule } from 'ng2-bootstrap/carousel';
+import { TraductionComponent } from './traduction/traduction.component';
+import {TranslateModule, TranslateLoader, TranslateStaticLoader} from "ng2-translate";
 
 
 
 const routes: Routes = [
   { path: 'todo/:status', component: TodoComponent },
   { path: 'design', component:DesignComponent },
+  { path: 'translate/:lang', component:TraductionComponent },
   { path: '**', component: PageNotFoundComponentComponent }
 ];
+
+export function createTranslateLoader(http: Http) {
+  return new TranslateStaticLoader(http, './assets/i18n', '.json');
+}
+
 @NgModule({
   declarations: [
     AppComponent,
     TodoComponent,
     DesignComponent,
-    PageNotFoundComponentComponent
+    PageNotFoundComponentComponent,
+    TraductionComponent
 
   ],
   imports: [
@@ -39,7 +48,12 @@ const routes: Routes = [
     ButtonsModule.forRoot(),
     CarouselModule.forRoot(),
     PaginationModule.forRoot(),
-    PopoverModule.forRoot()
+    PopoverModule.forRoot(),
+    TranslateModule.forRoot({
+      provide: TranslateLoader,
+      useFactory: (createTranslateLoader),
+      deps: [Http]
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
