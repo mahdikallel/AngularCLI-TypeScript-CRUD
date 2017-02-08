@@ -1,5 +1,5 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
-import { ModalDirective } from 'ng2-bootstrap/modal';
+import {Component, ViewChild, OnInit} from '@angular/core';
+import {ModalDirective} from 'ng2-bootstrap/modal';
 @Component({
   selector: 'app-design',
   templateUrl: 'design.component.html',
@@ -7,19 +7,67 @@ import { ModalDirective } from 'ng2-bootstrap/modal';
 })
 export class DesignComponent implements OnInit {
 
-  constructor() { }
+  public singleModel: string;
 
-  @ViewChild('staticModal') public childModal:ModalDirective;
+  public checkModel:any = {left: false, middle: true, right: false};
+  //slide show
+  public myInterval: number = 1500;
+  public slides: any[] = [];
+  public activeSlideIndex: number;
+  public noWrapSlides:boolean = false;
 
-  public showChildModal():void {
+  constructor() {
+    this.singleModel = "1";
+    //slide show
+    for (let i = 0; i < 4; i++) {
+      this.addSlide();
+    }
+  }
+  public addSlide(): void {
+    this.slides.push({
+      image: `assets/${ this.slides.length % 8 + 1 }.jpg`
+    });
+  }
+
+  public removeSlide(index?: number): void {
+    const toRemove = index ? index : this.activeSlideIndex;
+    this.slides.splice(toRemove, 1);
+  }
+
+
+  @ViewChild('staticModal') public childModal: ModalDirective;
+
+  public showChildModal(): void {
     this.childModal.show();
   }
 
-  public hideChildModal():void {
+  public hideChildModal(): void {
     this.childModal.hide();
   }
+
+  public click() {
+    if (this.singleModel == "0") {
+      this.singleModel = "1";
+    } else {
+      this.singleModel = "0";
+    }
+  }
+
+
+  //pagination
+  public totalItems:number = 64;
+  public currentPage:number = 4;
+  public smallnumPages:number = 0;
+
+  public pageChanged(event:any):void {
+    console.log('Page changed to: ' + event.page);
+    console.log('Number items per page: ' + event.itemsPerPage);
+  }
+
+
   ngOnInit() {
 
   }
 
 }
+

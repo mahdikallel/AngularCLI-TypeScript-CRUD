@@ -1,3 +1,37 @@
+<div style="width: 900px;height: 150px;">
+  <carousel [interval]="myInterval" [noWrap]="noWrapSlides" [(activeSlide)]="activeSlideIndex">
+    Current index slide {{activeSlideIndex}}
+    <slide *ngFor="let slide of slides; let index=index">
+      <img [src]="slide.image">
+
+      <div class="carousel-caption">
+        <h4>Slide {{index}}</h4>
+        <p>{{slide.text}}</p>
+      </div>
+    </slide>
+  </carousel>
+  <br/>
+  <div>
+    <button type="button" class="btn btn-info"
+            (click)="addSlide()">Add Slide
+    </button>
+    <button type="button" class="btn btn-info"
+            (click)="removeSlide()">Remove Current
+    </button>
+    <button type="button" class="btn btn-info"
+            (click)="removeSlide(2)">Remove #3
+    </button>
+  </div>
+  <div>
+    <div class="checkbox">
+      <label><input type="checkbox" [(ngModel)]="noWrapSlides">Disable Slide Looping</label>
+    </div>
+
+    <span>Interval, in milliseconds (Enter a negative number or 0 to stop the interval.): </span>
+    <input type="number" class="form-control" [(ngModel)]="myInterval">
+  </div>
+</div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <p>
   design works!
   <alert type="success">
@@ -12,7 +46,6 @@
   <alert type="danger">
     <strong>Oh snap!</strong> Change a few things up and try submitting again.
   </alert>
-
 
 
 </p>
@@ -30,9 +63,48 @@
         </button>
       </div>
       <div class="modal-body">
-        This is static modal, backdrop click will not close it.
-        Click <b>&times;</b> to close modal.
+       <pre class="card card-block card-header">
+  Model via JsonPipe: {{checkModel | json}}</pre>
+        <pre class="card card-block card-header">
+Left: {{checkModel.left}}
+Middle: {{checkModel.middle}}
+Right: {{checkModel.right}}</pre>
+        <!--<pre class="card card-block card-header">Results: {{checkResults}}</pre>-->
+        <div class="btn-group">
+          <label class="btn btn-primary" [(ngModel)]="checkModel.left"
+                 btnCheckbox>Left</label>
+          <label class="btn btn-primary" [(ngModel)]="checkModel.middle" btnCheckbox>Middle</label>
+          <label class="btn btn-primary" [(ngModel)]="checkModel.right" btnCheckbox>Right</label>
+        </div>
+
       </div>
     </div>
   </div>
+</div>
+
+<pre class="card card-block card-header">{{singleModel}}</pre>
+<button type="button" class="btn btn-primary"
+        (click)="click()" btnCheckbox
+        btnCheckboxTrue="1" btnCheckboxFalse="0">
+  Single Toggle
+</button>
+<br>
+<button type="button" class="btn btn-primary" [disabled]="disabled">Button</button>
+<button type="button" class="btn btn-warning" (click)="disabled = !disabled">Enable/Disable</button>
+
+<div class="col-md-6" style="margin: 20px 0;">
+  <pagination [directionLinks]="false" [boundaryLinks]="false" [totalItems]="totalItems" [(ngModel)]="currentPage"
+              (numPages)="smallnumPages = $event"></pagination>
+
+  <pager [totalItems]="totalItems" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)" pageBtnClass="btn"
+         itemsPerPage="10"></pager>
+</div>
+
+<div class="col-md-8">
+<button type="button" class="btn btn-primary"
+        popover="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+        triggers="focus"
+        placement="right">
+  Live demo
+</button>
 </div>

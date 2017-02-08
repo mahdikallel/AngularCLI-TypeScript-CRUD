@@ -2,14 +2,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import {AlertModule} from 'ng2-bootstrap';
+import {AlertModule, PopoverModule} from 'ng2-bootstrap';
 import { ModalModule } from 'ng2-bootstrap';
+import { PaginationModule } from 'ng2-bootstrap/pagination';
 
 import { AppComponent } from './app.component';
 import { TodoComponent } from './todo/todo.component';
 import {Routes, RouterModule} from "@angular/router";
 import { DesignComponent } from './design/design.component';
 import { PageNotFoundComponentComponent } from './page-not-found-component/page-not-found-component.component';
+import { ButtonsModule } from 'ng2-bootstrap/buttons';
+import { CarouselModule } from 'ng2-bootstrap/carousel';
 
 
 
@@ -32,7 +35,11 @@ const routes: Routes = [
     HttpModule,
     RouterModule.forRoot(routes),
     AlertModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    ButtonsModule.forRoot(),
+    CarouselModule.forRoot(),
+    PaginationModule.forRoot(),
+    PopoverModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
