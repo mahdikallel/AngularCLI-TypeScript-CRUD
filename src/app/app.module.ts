@@ -15,6 +15,7 @@ import { ButtonsModule } from 'ng2-bootstrap/buttons';
 import { CarouselModule } from 'ng2-bootstrap/carousel';
 import { TraductionComponent } from './traduction/traduction.component';
 import {TranslateModule, TranslateLoader, TranslateStaticLoader} from "ng2-translate";
+import { BookComponent } from './book/book.component';
 
 
 
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'todo/:status', component: TodoComponent },
   { path: 'design', component:DesignComponent },
   { path: 'translate/:lang', component:TraductionComponent },
+  { path: 'api/book', component:BookComponent },
   { path: '**', component: PageNotFoundComponentComponent }
 ];
 
@@ -35,7 +37,8 @@ export function createTranslateLoader(http: Http) {
     TodoComponent,
     DesignComponent,
     PageNotFoundComponentComponent,
-    TraductionComponent
+    TraductionComponent,
+    BookComponent
 
   ],
   imports: [
