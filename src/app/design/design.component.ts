@@ -1,4 +1,4 @@
-import {Component, ViewChild, OnInit} from '@angular/core';
+import {Component, ViewChild, OnInit, Input} from '@angular/core';
 import {ModalDirective} from 'ng2-bootstrap/modal';
 @Component({
   selector: 'app-design',
@@ -8,7 +8,6 @@ import {ModalDirective} from 'ng2-bootstrap/modal';
 export class DesignComponent implements OnInit {
 
   public singleModel: string;
-
   public checkModel:any = {left: false, middle: true, right: false};
   //slide show
   public myInterval: number = 1500;
@@ -16,6 +15,24 @@ export class DesignComponent implements OnInit {
   public activeSlideIndex: number;
   public noWrapSlides:boolean = false;
 
+
+  /* Unit test*/
+  @Input()firstName: string;
+  @Input()lastName: string;
+
+  a:number;
+  b:number;
+
+  public sayHello(){
+    console.log("Hello" + this.firstName + " " + this.lastName);
+    return "Hello" + this.firstName + " " + this.lastName;
+  }
+
+  public calculate(a,b){
+    return a+b;
+  }
+
+  /*----------End unit test-----------*/
   constructor() {
     this.singleModel = "1";
     //slide show

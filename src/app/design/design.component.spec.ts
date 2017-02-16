@@ -25,4 +25,20 @@ describe('DesignComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should sayHello', () => {
+    let designComp = new DesignComponent();
+    designComp.firstName = 'Mahdi';
+    designComp.lastName = 'kallel';
+    expect(designComp.sayHello()).toBe('HelloMahdi kallel');
+    /**/
+  });
+
+  it('should calculta', () => {
+    let designComp = new DesignComponent();
+    designComp.a = 2;
+    designComp.b = 5;
+    expect(designComp.calculate(designComp.a,designComp.b)).toBe(7);
+    /**/
+  });
 });
