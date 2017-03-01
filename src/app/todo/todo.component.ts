@@ -17,8 +17,8 @@ export class TodoComponent implements OnInit {
   private path;
 
   constructor(private todoService: TodoService, private route: ActivatedRoute) {
-  }
 
+  }
 
 
   getTodos(path) {
@@ -27,12 +27,21 @@ export class TodoComponent implements OnInit {
       console.log(this.todos);
       this.activeTasks = this.todos.filter(todo => todo.isDone).length;
       for (var i = 0; i < this.todos.length; i++) {
-        this.todos[i]._id=i;
+        this.todos[i]._id = i;
       }
       this._id = this.todos.length;
-      console.log("this._id" + this._id);
+      //console.log("this._id" + this._id);
+      let x = 31;
+      if (true) {
+        let x = 71;  // c'est une variable différente
+        console.log(x);  // 71
+      }
+      console.log(x);  // 31
+
+
     });
   }
+
 
   addTodo() {
     // this.todos.push(newTodo);

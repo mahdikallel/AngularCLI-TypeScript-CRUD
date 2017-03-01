@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {MdDialog} from "@angular/material";
+import {BookComponent} from "../book/book.component";
+import {TodoComponent} from "../todo/todo.component";
 
 @Component({
   selector: 'app-page-not-found-component',
@@ -6,8 +9,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./page-not-found-component.component.css']
 })
 export class PageNotFoundComponentComponent implements OnInit {
+  myState = 'AZ';
+  states = [{code: 'AL', name: 'Alabama'}];
 
-  constructor() { }
+  constructor(public dialog: MdDialog) {}
+
+  openDialog() {
+    this.dialog.open(TodoComponent);
+  }
+
+
 
   ngOnInit() {
   }

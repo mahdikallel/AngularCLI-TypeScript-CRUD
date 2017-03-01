@@ -1,13 +1,12 @@
 <p>
-  {{"Translate"| translate}}
-
+  {{"Translate"| translate}} <a [routerLink]="hrefTo"> <input type="button"  value="{{translateTo | translate}}"></a>
 </p>
-<a [routerLink]="hrefTo"> <input type="button"  value="{{translateTo | translate}}"></a>
+
 <div>{{ 'Hello' | translate:param }}{{ 'World' | translate }}</div>
 
 
 
-<p>
+<p style="line-height: 3em;">
 
   {{"Computer software, or simply software, is that part of a computer system that consists of encoded information or computer instructions, in contrast to the physical hardware from which the system is built." | translate}}
 </p>

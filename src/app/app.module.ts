@@ -16,7 +16,15 @@ import { CarouselModule } from 'ng2-bootstrap/carousel';
 import { TraductionComponent } from './traduction/traduction.component';
 import {TranslateModule, TranslateLoader, TranslateStaticLoader} from "ng2-translate";
 import { BookComponent } from './book/book.component';
+import { ContactComponent } from './contact/contact.component';
+// import {MdButtonModule} from "@angular2-material/button"
+// import {MdCardModule} from '@angular2-material/card';
+// import {MdToolbarModule} from '@angular2-material/toolbar';
+import { MaterialModule } from '@angular/material';
+import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 
+// import { MaterialButton } from '@angular/material/button';
+import {} from 'hammerjs'
 
 
 const routes: Routes = [
@@ -26,6 +34,12 @@ const routes: Routes = [
   { path: 'api/book', component:BookComponent },
   { path: '**', component: PageNotFoundComponentComponent }
 ];
+
+export class MyHammerConfig extends HammerGestureConfig  {
+  overrides = <any>{
+    'swipe': {velocity: 0.4, threshold: 20} // override default settings
+  }
+}
 
 export function createTranslateLoader(http: Http) {
   return new TranslateStaticLoader(http, './assets/i18n', '.json');
@@ -38,7 +52,8 @@ export function createTranslateLoader(http: Http) {
     DesignComponent,
     PageNotFoundComponentComponent,
     TraductionComponent,
-    BookComponent
+    BookComponent,
+    ContactComponent
 
   ],
   imports: [
@@ -56,9 +71,18 @@ export function createTranslateLoader(http: Http) {
       provide: TranslateLoader,
       useFactory: (createTranslateLoader),
       deps: [Http]
-    })
+    }),
+    // MdButtonModule.forRoot(),
+    // MdCardModule.forRoot(),
+    // MdToolbarModule.forRoot(),
+    MaterialModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HAMMER_GESTURE_CONFIG,
+      useClass: MyHammerConfig
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
